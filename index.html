@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تقرير حركة نقل الطلبة 1447هـ - Elite Pro</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+  <style>
+    :root{
+      --primary:#132d86; --secondary:#c40d24; --gold:#f2c12b; --bg:#eef2f7; --card:#ffffff; --text:#24324a; --muted:#7b8597; --line:#e4e9f2;
+      --blue:#226fe5; --green:#62b347; --purple:#7e3fd4; --orange:#ff7b1f;
+      --blue-soft:#f2f7ff; --green-soft:#f4fbf0; --purple-soft:#f7f2ff; --orange-soft:#fff5ed;
+      --hero-grad:linear-gradient(135deg,#0f2c7a 0%, #3c215f 48%, #c20c24 100%);
+      --section-blue:linear-gradient(135deg,#123593,#1b49b7); --section-teal:linear-gradient(135deg,#0c7b8c,#1495a2); --section-purple:linear-gradient(135deg,#5b2db6,#8a49db);
+      --subtitle-blue:linear-gradient(135deg,#edf4ff,#dfeeff); --subtitle-teal:linear-gradient(135deg,#e8fbfc,#d8f5f6); --subtitle-purple:linear-gradient(135deg,#f3ecff,#e8ddff);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(circle at top right, rgba(34,111,229,.06), transparent 22%),radial-gradient(circle at top left, rgba(196,13,36,.05), transparent 22%),var(--bg);font-family:'Tajawal',sans-serif;color:var(--text);padding:12px 12px 18px;}
+    .container{max-width:1520px;margin:auto;}
+    .hero{position:relative;overflow:hidden;background:var(--hero-grad);border-radius:28px;padding:30px 24px 28px;color:#fff;box-shadow:0 16px 34px rgba(17,34,88,.18);margin-bottom:14px;min-height:220px;display:flex;align-items:flex-start;justify-content:flex-start;isolation:isolate;animation:fadeUp .75s ease;}
+    .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.08);filter:blur(2px);z-index:0;}
+    .hero::before{width:230px;height:230px;top:-80px;right:-40px;}
+    .hero::after{width:260px;height:260px;left:-80px;bottom:-120px;}
+    .hero-inner{text-align:right;z-index:1;max-width:100%;width:100%;padding-top:92px;padding-right:6px;}
+
+    .hero-org{position:absolute;top:22px;right:24px;z-index:2;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:245px;padding:12px 16px;border-radius:18px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.24);box-shadow:0 10px 24px rgba(0,0,0,.12);backdrop-filter:blur(8px);text-align:center;color:#fff;line-height:1.55;}
+    .hero-org span{display:block;font-size:.92rem;font-weight:800;letter-spacing:.1px;white-space:nowrap;text-shadow:0 1px 10px rgba(0,0,0,.12);}
+    .hero h1{margin:0;line-height:1.5;font-size:clamp(1.05rem,1.85vw,2.05rem);font-weight:900;letter-spacing:.1px;white-space:nowrap;text-align:right;}
+    .hero .year{color:#ffd348;}
+    .hero-sub{margin-top:12px;color:rgba(255,255,255,.92);font-size:1.06rem;font-weight:500;}
+    .top-note{margin:0 0 16px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.7);border-radius:20px;padding:16px 18px;box-shadow:0 10px 26px rgba(30,44,94,.08);text-align:center;font-weight:800;color:#33425f;animation:fadeUp .9s ease;}
+    .top-note span{color:var(--primary);}
+    .summary-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px;animation:fadeUp 1s ease;}
+    .summary-mini{background:#fff;border-radius:20px;padding:16px 18px;box-shadow:0 10px 24px rgba(28,44,94,.07);border:1px solid #edf1f7;position:relative;overflow:hidden;}
+    .summary-mini::before{content:"";position:absolute;inset:0 auto 0 0;width:6px;border-radius:12px;background:linear-gradient(180deg,#ffd348,#f4b41d);}
+    .summary-mini .label{color:#6e7890;font-size:1rem;font-weight:700;margin-bottom:8px;}
+    .summary-mini .value{color:#1a2f7a;font-size:2rem;font-weight:900;line-height:1;direction:ltr;}
+    .summary-mini .unit{color:#657188;font-size:.96rem;font-weight:700;margin-top:6px;}
+    .summary-mini .value.counter{display:inline-block;min-width:120px;will-change:contents;animation:counterGlow 1.25s ease both;}
+    .summary-mini.counting{transform:translateY(-3px);box-shadow:0 16px 34px rgba(28,44,94,.12);}
+    @keyframes counterGlow{0%{transform:scale(.92);filter:blur(.2px);opacity:.35;}55%{transform:scale(1.07);opacity:1;}100%{transform:scale(1);filter:blur(0);opacity:1;}}
+
+    .section{background:#fff;border-radius:28px;padding:12px 18px 22px;box-shadow:0 12px 28px rgba(28,44,94,.07);margin-bottom:20px;border:1px solid #edf1f7;animation:fadeUp .8s ease both;}
+    .section-header{display:flex;justify-content:flex-start;margin-bottom:12px;}
+    .section-badge{min-width:670px;max-width:100%;color:#fff;font-size:1.23rem;font-weight:900;padding:16px 30px 16px 22px;border-radius:18px;position:relative;box-shadow:0 10px 20px rgba(0,0,0,.12);clip-path:polygon(4% 0,100% 0,100% 100%,0 100%,0 22%);letter-spacing:.15px;}
+    .section-badge:after{content:"";position:absolute;right:14px;top:12px;width:5px;height:42px;background:#ffc928;border-radius:10px;}
+    .badge-blue{background:var(--section-blue);} .badge-teal{background:var(--section-teal);} .badge-purple{background:var(--section-purple);}
+    .subtitle-frame{display:flex;align-items:center;justify-content:flex-start;gap:14px;padding:14px 18px;border-radius:18px;margin:6px 0 16px;border:1px solid rgba(0,0,0,.05);box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 8px 18px rgba(31,41,55,.04);flex-wrap:wrap;}
+    .subtitle-blue{background:var(--subtitle-blue);border-color:rgba(34,111,229,.12);} .subtitle-teal{background:var(--subtitle-teal);border-color:rgba(20,149,162,.12);} .subtitle-purple{background:var(--subtitle-purple);border-color:rgba(126,63,212,.12);}
+    .subtitle-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+    .period-group{display:flex;align-items:center;justify-content:flex-start;gap:12px;margin-inline-end:auto;direction:rtl;}
+    .subtitle-icon{width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.15rem;font-weight:900;box-shadow:0 8px 18px rgba(0,0,0,.08);flex-shrink:0;}
+    .subtitle-blue .subtitle-icon{background:linear-gradient(135deg,#226fe5,#4e8fff);} .subtitle-teal .subtitle-icon{background:linear-gradient(135deg,#0f7d8d,#1cb0bc);} .subtitle-purple .subtitle-icon{background:linear-gradient(135deg,#6e36cb,#9b6af0);}
+    .subtitle-text{display:flex;flex-direction:column;gap:3px;}
+    .subtitle-text .main{font-size:1.05rem;font-weight:900;color:#233250;}
+    .subtitle-text .sub{font-size:.93rem;color:#667389;font-weight:700;}
+    .period-chip{padding:10px 14px;border-radius:999px;color:#fff;font-size:.93rem;font-weight:800;box-shadow:0 8px 18px rgba(0,0,0,.08);white-space:nowrap;}
+    .subtitle-blue .period-chip{background:linear-gradient(135deg,#226fe5,#3a86ff);} .subtitle-teal .period-chip{background:linear-gradient(135deg,#0f7d8d,#15a9b5);} .subtitle-purple .period-chip{background:linear-gradient(135deg,#6a2dcc,#8c56ea);}
+    .content-grid{display:grid;grid-template-columns:1.85fr 1fr;gap:16px;align-items:center;}
+    .cards{display:grid;grid-template-columns:repeat(3, 1fr);gap:18px;margin-bottom:22px;}
+    .stage-card{background:#fff;border-radius:22px;min-height:238px;padding:24px 14px 18px;text-align:center;border:1.5px solid var(--line);position:relative;transition:transform .28s ease, box-shadow .28s ease;overflow:hidden;}
+    .stage-card:hover{transform:translateY(-5px);box-shadow:0 14px 24px rgba(30,44,94,.12);}
+    .stage-card::before{content:"";position:absolute;inset:0 0 auto 0;height:7px;background:currentColor;opacity:.9;}
+    .stage-card h3{margin:4px 0 18px;font-size:1.12rem;font-weight:900;letter-spacing:.1px;}
+    .primary-s{color:#1a5fe0;background:var(--blue-soft);border-color:rgba(34,111,229,.35);}
+    .middle{color:#189344;background:var(--green-soft);border-color:rgba(98,179,71,.36);}
+    .secondary-s{color:#6a2dcc;background:var(--purple-soft);border-color:rgba(126,63,212,.34);}
+    .gender-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 14px;}
+    .gender-box{border-radius:18px;padding:13px 8px;background:rgba(255,255,255,.82);border:1px solid rgba(0,0,0,.05);box-shadow:0 8px 16px rgba(25,39,82,.05);}
+    .gender-label{display:block;color:#64708a;font-size:.92rem;font-weight:900;margin-bottom:7px;}
+    .gender-num{display:block;direction:ltr;color:#1d2f72;font-size:1.75rem;font-weight:900;line-height:1;}
+    .boys-box .gender-label{color:#193287;} .girls-box .gender-label{color:#c40d7a;}
+    .stage-total{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:999px;padding:10px 12px;color:#24324a;}
+    .stage-total span{font-weight:900;color:#5b6780;}
+    .stage-total strong{font-size:1.55rem;line-height:1;direction:ltr;font-weight:900;color:currentColor;}
+    .stage-total em{font-style:normal;font-size:.9rem;font-weight:900;color:#64708a;background:#f6f8fb;border-radius:99px;padding:5px 8px;}
+    .meta-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 2px 12px;}
+    .compare-chip{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:#f8fafc;border:1px solid #e5eaf2;color:#5b6780;font-size:.93rem;font-weight:800;}
+    .compare-chip strong{color:#1f3486;}
+    .totals-dashboard{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px;}
+    .total-pill{border-radius:20px;padding:15px 16px;background:#fff;border:1px solid #e6ebf3;box-shadow:0 9px 20px rgba(30,44,94,.06);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+    .total-pill span{font-weight:900;color:#667389;} .total-pill strong{font-size:1.7rem;direction:ltr;line-height:1;color:#1f3486;}
+    .boys-total{background:#f4f7ff;} .girls-total{background:#fff3f8;} .girls-total strong{color:#b91273;} .grand-total{background:#fff9df;border-color:#f1dd8a;} .grand-total strong{color:#a56a00;}
+    .chart-col{display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:center;}
+    .chart-panel{background:#fcfdff;border:1px solid #edf1f7;border-radius:22px;padding:16px 14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.7);}
+    .chart-wrap{width:280px;height:280px;position:relative;margin:auto;}
+    .legend-title{color:#6a748b;font-size:.96rem;font-weight:800;margin-bottom:12px;}
+    .legend ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:16px;}
+    .legend li{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#5d667a;font-weight:800;background:#fff;border:1px solid #edf1f7;border-radius:14px;padding:10px 12px;}
+    .legend .item-right{display:flex;align-items:center;gap:10px;}
+    .legend .bullet{width:15px;height:15px;border-radius:50%;box-shadow:0 0 0 4px rgba(0,0,0,.03);}
+    .legend .legend-val{color:#24324a;font-weight:900;direction:ltr;}
+    .footer{text-align:center;color:#8c97aa;font-weight:800;margin-top:12px;padding:14px;border-radius:18px;background:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.7);backdrop-filter:blur(6px);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+    @media (max-width:1320px){.content-grid{grid-template-columns:1fr;}.chart-col{justify-content:center;}.section-badge{min-width:100%;}}
+    @media (max-width:980px){.cards{grid-template-columns:1fr;}.summary-strip,.totals-dashboard{grid-template-columns:1fr;}}
+    @media (max-width:700px){body{padding:10px;}.hero{padding:118px 16px 24px;min-height:255px;border-radius:24px;}.hero-org{top:16px;left:50%;right:auto;transform:translateX(-50%);min-width:min(92%,310px);padding:10px 12px;}.hero-org span{font-size:.84rem;}.hero-inner{text-align:center;padding-top:90px;padding-right:0;}.hero h1{white-space:normal;text-align:center;font-size:clamp(1.08rem,4.5vw,1.45rem);line-height:1.7;}.section{padding:10px 12px 18px;border-radius:24px;}.section-badge{font-size:1.02rem;padding:15px 22px 15px 18px;}.subtitle-frame{padding:12px 13px;}.chart-col{grid-template-columns:1fr;}.chart-wrap{width:250px;height:250px;}.meta-row{flex-direction:column;align-items:stretch;}.compare-chip{justify-content:center;}.gender-grid{grid-template-columns:1fr;}}
+
+
+    /* Center all card data - applied without changing the report structure */
+    .summary-mini,
+    .stage-card,
+    .gender-box,
+    .stage-total,
+    .total-pill{
+      text-align:center;
+    }
+
+    .summary-mini{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .summary-mini .value,
+    .summary-mini .unit,
+    .summary-mini .label{
+      width:100%;
+      text-align:center;
+    }
+
+    .gender-box{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:92px;
+    }
+
+    .gender-label,
+    .gender-num{
+      width:100%;
+      text-align:center;
+    }
+
+    .stage-total{
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      margin-inline:auto;
+      width:100%;
+    }
+
+    .total-pill{
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      min-height:112px;
+    }
+
+    .total-pill span,
+    .total-pill strong{
+      width:100%;
+      text-align:center;
+    }
+  
+
+    /* Hero title centered + cinematic banner effect */
+    .hero{
+      justify-content:center;
+      align-items:flex-start;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255,255,255,.16), transparent 18%),
+        radial-gradient(circle at 82% 18%, rgba(255,211,72,.18), transparent 16%),
+        linear-gradient(135deg, rgba(8,20,58,.28), rgba(0,0,0,.06)),
+        var(--hero-grad);
+      background-size:100% 100%,100% 100%,100% 100%,140% 140%;
+      background-position:center,center,center,50% 50%;
+      box-shadow:0 18px 42px rgba(17,34,88,.22), inset 0 1px 0 rgba(255,255,255,.12), inset 0 -24px 60px rgba(0,0,0,.18);
+      animation:fadeUp .75s ease, cinematicShift 14s ease-in-out infinite;
+    }
+    .hero::before{
+      width:44%;
+      height:220%;
+      top:-55%;
+      right:-12%;
+      border-radius:40%;
+      background:linear-gradient(115deg, rgba(255,255,255,0) 22%, rgba(255,255,255,.22) 50%, rgba(255,255,255,0) 78%);
+      filter:blur(8px);
+      transform:skewX(-22deg);
+      animation:cinemaSweep 10s ease-in-out infinite;
+      opacity:.85;
+    }
+    .hero::after{
+      inset:0;
+      width:auto;
+      height:auto;
+      left:0;
+      top:0;
+      right:0;
+      bottom:0;
+      border-radius:inherit;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.26) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 78%, rgba(0,0,0,.24) 100%),
+        radial-gradient(circle at center, transparent 52%, rgba(0,0,0,.16) 100%);
+      filter:none;
+      animation:cinemaGlow 8s ease-in-out infinite;
+    }
+    .hero-inner{
+      text-align:center;
+      z-index:2;
+      max-width:100%;
+      width:100%;
+      padding-top:96px;
+      padding-right:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .hero h1{
+      text-align:center;
+      margin-inline:auto;
+      white-space:nowrap;
+      text-shadow:0 4px 16px rgba(0,0,0,.24);
+      position:relative;
+      z-index:2;
+    }
+    .hero-org{z-index:3;}
+
+    @keyframes cinematicShift{
+      0%,100%{background-position:center,center,center,50% 50%;}
+      50%{background-position:center,center,center,54% 46%;}
+    }
+    @keyframes cinemaSweep{
+      0%{transform:translateX(34%) skewX(-22deg); opacity:.15;}
+      20%{opacity:.75;}
+      50%{transform:translateX(-16%) skewX(-22deg); opacity:.48;}
+      100%{transform:translateX(-52%) skewX(-22deg); opacity:.08;}
+    }
+    @keyframes cinemaGlow{
+      0%,100%{opacity:.92;}
+      50%{opacity:1;}
+    }
+
+    @media (max-width:700px){
+      .hero-inner{
+        text-align:center;
+        padding-top:90px;
+        padding-right:0;
+      }
+      .hero h1{
+        white-space:normal;
+        text-align:center;
+        font-size:clamp(1.08rem,4.5vw,1.45rem);
+        line-height:1.7;
+      }
+    }
+
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="hero">
+      <div class="hero-org">
+        <span>الإدارة العامة للتعليم بمنطقة مكة المكرمة</span>
+        <span>إدارة التطوير والتحول</span>
+        <span>قسم التخطيط - لجنة القبول</span>
+      </div>
+      <div class="hero-inner">
+        <h1>تقرير حركة نقل الطلبة من إدارة تعليم مكة إلى إدارات تعليمية أخرى للعام الدراسي <span class="year">1447هـ</span></h1>
+       
+      </div>
+    </header>
+
+       <div class="summary-strip">
+      <div class="summary-mini">
+        <div class="label">بداية العام الدراسي</div>
+        <div class="value counter" data-count="4237">0</div>
+        <div class="unit">الإجمالي · بنين 1,530 / بنات 2,707</div>
+      </div>
+      <div class="summary-mini">
+        <div class="label">بداية الفصل الدراسي الثاني</div>
+        <div class="value counter" data-count="2412">0</div>
+        <div class="unit">الإجمالي · بنين 1,317 / بنات 1,095</div>
+      </div>
+      <div class="summary-mini">
+        <div class="label">كامل العام الدراسي</div>
+        <div class="value counter" data-count="6719">0</div>
+        <div class="unit">الإجمالي · بنين 3,305 / بنات 3,414</div>
+      </div>
+    </div>
+
+
+    <section class="section">
+      <div class="section-header">
+        <div class="section-badge badge-blue">أولاً: الطلبة المنقولين من إدارة تعليم مكة إلى إدارات تعليمية أخرى – بداية العام الدراسي</div>
+      </div>
+
+      <div class="subtitle-frame subtitle-blue">
+        <div class="period-group">
+          <div class="subtitle-icon">①</div>
+          <div class="period-chip">الفترة: 1/3/1447 - 20/4/1447</div>
+        </div>
+      </div>
+<div class="content-grid">
+        <div class="cards-col">
+          <div class="cards stage-cards">
+            <div class="stage-card primary-s">
+              <h3>المرحلة الابتدائية</h3>
+              <div class="gender-grid">
+                <div class="gender-box boys-box">
+                  <span class="gender-label">البنين</span>
+                  <span class="gender-num">598</span>
+                </div>
+                <div class="gender-box girls-box">
+                  <span class="gender-label">البنات</span>
+                  <span class="gender-num">1,470</span>
+                </div>
+              </div>
+              <div class="stage-total">
+                <span>الإجمالي</span>
+                <strong>2,068</strong>
+                <em>48.8%</em>
+              </div>
+            </div>
+            <div class="stage-card middle">
+              <h3>المرحلة المتوسطة</h3>
+              <div class="gender-grid">
+                <div class="gender-box boys-box">
+                  <span class="gender-label">البنين</span>
+                  <span class="gender-num">451</span>
+                </div>
+                <div class="gender-box girls-box">
+                  <span class="gender-label">البنات</span>
+                  <span class="gender-num">630</span>
+                </div>
+              </div>
+              <div class="stage-total">
+                <span>الإجمالي</span>
+                <strong>1,081</strong>
+                <em>25.5%</em>
+              </div>
+            </div>
+            <div class="stage-card secondary-s">
+              <h3>المرحلة الثانوية</h3>
+              <div class="gender-grid">
+                <div class="gender-box boys-box">
+                  <span class="gender-label">البنين</span>
+                  <span class="gender-num">481</span>
+                </div>
+                <div class="gender-box girls-box">
+                  <span class="gender-label">البنات</span>
+                  <span class="gender-num">607</span>
+                </div>
+              </div>
+              <div class="stage-total">
+                <span>الإجمالي</span>
+                <strong>1,088</strong>
+                <em>25.7%</em>
+              </div>
+            </div>
+          </div>
+
+          <div class="totals-dashboard">
+            <div class="total-pill boys-total"><span>إجمالي البنين</span><strong>1,530</strong></div>
+            <div class="total-pill girls-total"><span>إجمالي البنات</span><strong>2,707</strong></div>
+            <div class="total-pill grand-total"><span>الإجمالي العام</span><strong>4,237</strong></div>
+          </div>
+        </div>
+
+        <div class="chart-col">
+          <div class="chart-panel">
+            <div class="chart-wrap"><canvas id="chartMerged1"></canvas></div>
+          </div>
+          <div class="legend">
+            <div class="legend-title">مفتاح إجمالي المراحل الدراسية</div>
+            <ul>
+              <li>
+                <div class="item-right"><span class="bullet" style="background:#226fe5"></span>المرحلة الابتدائية</div>
+                <span class="legend-val">2,068</span>
+              </li>
+              <li>
+                <div class="item-right"><span class="bullet" style="background:#62b347"></span>المرحلة المتوسطة</div>
+                <span class="legend-val">1,081</span>
+              </li>
+              <li>
+                <div class="item-right"><span class="bullet" style="background:#7e3fd4"></span>المرحلة الثانوية</div>
+                <span class="legend-val">1,088</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-header">
+        <div class="section-badge badge-teal">ثانياً: الطلبة المنقولين من إدارة تعليم مكة إلى إدارات تعليمية أخرى – بداية الفصل الدراسي الثاني</div>
+      </div>
+
+      <div class="subtitle-frame subtitle-teal">
+        <div class="period-group">
+          <div class="subtitle-icon">②</div>
+          <div class="period-chip">الفترة: 29/7/1447 - 1/9/1447</div>
+        </div>
+      </div>
+<div class="content-grid">
+        <div class="cards-col">
+          <div class="cards stage-cards">
+            <div class="stage-card primary-s">
+              <h3>المرحلة الابتدائية</h3>
+              <div class="gender-grid">
+                <div class="gender-box boys-box">
+                  <span class="gender-label">البنين</span>
+                  <span class="gender-num">512</span>
+                </div>
+                <div class="gender-box girls-box">
+                  <span class="gender-label">البنات</span>
+                  <span class="gender-num">734</span>
+                </div>
+              </div>
+              <div class="stage-total">
+                <span>الإجمالي</span>
+                <strong>1,246</strong>
+                <em>51.7%</em>
+              </div>
+            </div>
+            <div class="stage-card middle">
+              <h3>المرحلة المتوسطة</h3>
+              <div class="gender-grid">
+                <div class="gender-box boys-box">
+                  <span class="gender-label">البنين</span>
+                  <span class="gender-num">401</span>
+                </div>
+                <div class="gender-box girls-box">
+                  <span class="gender-label">البنات</span>
+                  <span class="gender-num">233</span>
+                </div>
+              </div>
+              <div class="stage-total">
+                <span>الإجمالي</span>
+                <strong>634</strong>
+                <em>26.3%</em>
+              </div>
+            </div>
+            <div class="stage-card secondary-s">
+              <h3>المرحلة الثانوية</h3>
+              <div class="gender-grid">
+                <div class="gender-box boys-box">
+                  <span class="gender-label">البنين</span>
+                  <span class="gender-num">404</span>
+                </div>
+                <div class="gender-box girls-box">
+                  <span class="gender-label">البنات</span>
+                  <span class="gender-num">128</span>
+                </div>
+              </div>
+              <div class="stage-total">
+                <span>الإجمالي</span>
+                <strong>532</strong>
+                <em>22.1%</em>
+              </div>
+            </div>
+          </div>
+
+          <div class="totals-dashboard">
+            <div class="total-pill boys-total"><span>إجمالي البنين</span><strong>1,317</strong></div>
+            <div class="total-pill girls-total"><span>إجمالي البنات</span><strong>1,095</strong></div>
+            <div class="total-pill grand-total"><span>الإجمالي العام</span><strong>2,412</strong></div>
+          </div>
+        </div>
+
+        <div class="chart-col">
+          <div class="chart-panel">
+            <div class="chart-wrap"><canvas id="chartMerged2"></canvas></div>
+          </div>
+          <div class="legend">
+            <div class="legend-title">مفتاح إجمالي المراحل الدراسية</div>
+            <ul>
+              <li>
+                <div class="item-right"><span class="bullet" style="background:#226fe5"></span>المرحلة الابتدائية</div>
+                <span class="legend-val">1,246</span>
+              </li>
+              <li>
+                <div class="item-right"><span class="bullet" style="background:#62b347"></span>المرحلة المتوسطة</div>
+                <span class="legend-val">634</span>
+              </li>
+              <li>
+                <div class="item-right"><span class="bullet" style="background:#7e3fd4"></span>المرحلة الثانوية</div>
+                <span class="legend-val">532</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-header">
+        <div class="section-badge badge-purple">ثالثاً: الطلبة المنقولين من إدارة تعليم مكة إلى إدارات تعليمية أخرى – كامل العام الدراسي</div>
+      </div>
+
+      <div class="subtitle-frame subtitle-purple">
+        <div class="period-group">
+          <div class="subtitle-icon">③</div>
+          <div class="period-chip">الفترة: 1/3/1447 - 3/11/1447</div>
+        </div>
+      </div>
+<div class="content-grid">
+        <div class="cards-col">
+          <div class="cards stage-cards">
+            <div class="stage-card primary-s">
+              <h3>المرحلة الابتدائية</h3>
+              <div class="gender-grid">
+                <div class="gender-box boys-box">
+                  <span class="gender-label">البنين</span>
+                  <span class="gender-num">1,287</span>
+                </div>
+                <div class="gender-box girls-box">
+                  <span class="gender-label">البنات</span>
+                  <span class="gender-num">1,450</span>
+                </div>
+              </div>
+              <div class="stage-total">
+                <span>الإجمالي</span>
+                <strong>2,737</strong>
+                <em>40.7%</em>
+              </div>
+            </div>
+            <div class="stage-card middle">
+              <h3>المرحلة المتوسطة</h3>
+              <div class="gender-grid">
+                <div class="gender-box boys-box">
+                  <span class="gender-label">البنين</span>
+                  <span class="gender-num">978</span>
+                </div>
+                <div class="gender-box girls-box">
+                  <span class="gender-label">البنات</span>
+                  <span class="gender-num">1,083</span>
+                </div>
+              </div>
+              <div class="stage-total">
+                <span>الإجمالي</span>
+                <strong>2,061</strong>
+                <em>30.7%</em>
+              </div>
+            </div>
+            <div class="stage-card secondary-s">
+              <h3>المرحلة الثانوية</h3>
+              <div class="gender-grid">
+                <div class="gender-box boys-box">
+                  <span class="gender-label">البنين</span>
+                  <span class="gender-num">1,040</span>
+                </div>
+                <div class="gender-box girls-box">
+                  <span class="gender-label">البنات</span>
+                  <span class="gender-num">881</span>
+                </div>
+              </div>
+              <div class="stage-total">
+                <span>الإجمالي</span>
+                <strong>1,921</strong>
+                <em>28.6%</em>
+              </div>
+            </div>
+          </div>
+
+          <div class="totals-dashboard">
+            <div class="total-pill boys-total"><span>إجمالي البنين</span><strong>3,305</strong></div>
+            <div class="total-pill girls-total"><span>إجمالي البنات</span><strong>3,414</strong></div>
+            <div class="total-pill grand-total"><span>الإجمالي العام</span><strong>6,719</strong></div>
+          </div>
+        </div>
+
+        <div class="chart-col">
+          <div class="chart-panel">
+            <div class="chart-wrap"><canvas id="chartMerged3"></canvas></div>
+          </div>
+          <div class="legend">
+            <div class="legend-title">مفتاح إجمالي المراحل الدراسية</div>
+            <ul>
+              <li>
+                <div class="item-right"><span class="bullet" style="background:#226fe5"></span>المرحلة الابتدائية</div>
+                <span class="legend-val">2,737</span>
+              </li>
+              <li>
+                <div class="item-right"><span class="bullet" style="background:#62b347"></span>المرحلة المتوسطة</div>
+                <span class="legend-val">2,061</span>
+              </li>
+              <li>
+                <div class="item-right"><span class="bullet" style="background:#7e3fd4"></span>المرحلة الثانوية</div>
+                <span class="legend-val">1,921</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">وحدة القبول 2026</div>
+  </div>
+
+  <script>
+    Chart.register(ChartDataLabels);
+    const centerTextPlugin = {
+      id: 'centerTextPlugin',
+      afterDraw(chart, args, pluginOptions) {
+        const { ctx, chartArea } = chart;
+        if (!chartArea) return;
+        const x = (chartArea.left + chartArea.right) / 2;
+        const y = (chartArea.top + chartArea.bottom) / 2;
+        ctx.save();
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#6b7588';
+        ctx.font = '700 15px Tajawal';
+        ctx.fillText('الإجمالي', x, y - 24);
+        ctx.fillStyle = pluginOptions.color || '#193287';
+        ctx.font = '900 26px Tajawal';
+        ctx.fillText(pluginOptions.total, x, y + 3);
+        ctx.fillStyle = '#6b7588';
+        ctx.font = '700 15px Tajawal';
+        ctx.fillText('طالب/طالبة', x, y + 28);
+        ctx.restore();
+      }
+    };
+    Chart.register(centerTextPlugin);
+
+    function animateCounters(){
+      const counters = document.querySelectorAll('.counter[data-count]');
+      const duration = 1600;
+      counters.forEach((counter, index) => {
+        const target = Number(counter.dataset.count || 0);
+        const parent = counter.closest('.summary-mini');
+        let startTime = null;
+        const delay = index * 140;
+
+        function easeOutCubic(t){
+          return 1 - Math.pow(1 - t, 3);
+        }
+
+        function updateCounter(timestamp){
+          if (!startTime) startTime = timestamp;
+          const progress = Math.min((timestamp - startTime) / duration, 1);
+          const current = Math.round(target * easeOutCubic(progress));
+          counter.textContent = current.toLocaleString('en-US');
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target.toLocaleString('en-US');
+            parent?.classList.remove('counting');
+          }
+        }
+
+        setTimeout(() => {
+          parent?.classList.add('counting');
+          requestAnimationFrame(updateCounter);
+        }, delay);
+      });
+    }
+
+    window.addEventListener('load', animateCounters);
+
+    function createDonutChart(canvasId, values, totalText, totalColor) {
+      new Chart(document.getElementById(canvasId), {
+        type: 'doughnut',
+        data: {
+          labels: ['المرحلة الابتدائية', 'المرحلة المتوسطة', 'المرحلة الثانوية'],
+          datasets: [{
+            data: values,
+            backgroundColor: ['#226fe5', '#62b347', '#7e3fd4'],
+            borderColor: '#ffffff',
+            borderWidth: 3,
+            hoverOffset: 10
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '66%',
+          animation: { animateRotate: true, duration: 1300 },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              rtl: true,
+              titleFont: { family: 'Tajawal', weight: 'bold' },
+              bodyFont: { family: 'Tajawal', weight: 'bold' },
+              callbacks: {
+                label: function(context){
+                  const dataset = context.dataset.data;
+                  const total = dataset.reduce((a,b)=>a+b,0);
+                  const value = context.raw;
+                  const pct = ((value / total) * 100).toFixed(1);
+                  return ` ${context.label}: ${value.toLocaleString('en-US')} طالب/طالبة (${pct}%)`;
+                }
+              }
+            },
+            datalabels: {
+              display: false
+            },
+            centerTextPlugin: { total: totalText, color: totalColor }
+          }
+        }
+      });
+    }
+
+    createDonutChart('chartMerged1', [2068, 1081, 1088], '4,237', '#193287');
+    createDonutChart('chartMerged2', [1246, 634, 532], '2,412', '#0e7f89');
+    createDonutChart('chartMerged3', [2737, 2061, 1921], '6,719', '#6a2dcc');
+  </script>
+</body>
+</html>
